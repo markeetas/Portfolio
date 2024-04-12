@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Pojistovna</title>
+</head>
+<body>
+    {% load static %}
+    Jméno: {{jmeno}} <br>
+    Adresa: {{adresa}} <br>
+    Pojištění: {{pojisteni}} <br>
+    Náš obrázek: <br>
+    <img src="{% static 'pojisteni/rozarka.jpg' %}" alt="cat" width="300" height="200">
+</body>
+</html>
