@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam pojištěnců</title>
+</head>
+<body>
+    {% for insured in insureds %}
+        <a href="{% url 'insured_detail' insured.pk %}">{{ insured.name }}</a>, Adresa: {{ insured.address }}, Email: {{ insured.email }}, Telefon: {{ insured.phone }}<br>
+    {% endfor %}
+</body>
+</html>
