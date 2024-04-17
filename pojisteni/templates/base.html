@@ -9,23 +9,26 @@
               type="text/css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Projekt Pojišťovna</title>
+        <title>Pojišťovna</title>
     </head>
     <body>
         <nav>
-        <div class="flex_box">
-            <div class="logo">
-                <!-- Vložte kód pro vaše logo -->
+            <div class="flex_box">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'pojisteni/umbrella.png' %}" alt="Logo"></a>
+                    
+                </div>
+                <div class="nav_items">
+                    <div class="nav_item"><a href="{% url 'insured_index' %}">Pojištěnci</a></div>
+                    <div class="nav_item"><a href="{% url 'insurance_index' %}">Pojištění</a></div> 
+                    <div class="nav_item"><a href="{% url 'events_index' %}">Události</a></div>
+                    <div class="nav_item"><a href="{% url 'about' %}">O aplikaci</a></div> 
+                {% comment %} <div class="user-actions"> {% endcomment %}
+                    <!-- Vložte kód pro přihlášení a registraci -->
+                </div>
             </div>
-            <div class="nav_item"><a href="{% url 'insured_index' %}">Pojištěnci</a></div>
-            {% comment %} <div class="nav_item"><a href="{% url 'insurance_index' %}">Pojištění</a></div> {% endcomment %}
-            {% comment %} <div class="nav_item"><a href="{% url 'events_index' %}">Události</a></div>
-            <div class="nav_item"><a href="{% url 'about' %}">O aplikaci</a></div> {% endcomment %}
-            <div class="user-actions">
-                <!-- Vložte kód pro přihlášení a registraci -->
-            </div>
-        </div>
-        </nav> 
+        </nav>
         <div class="content">
             {% block content %}
             {% endblock content %}
