@@ -79,3 +79,13 @@ footer {
 .nav_items {
     display: contents;
 }
+
+.user-actions {
+    display: flex; /* Použijeme flexbox layout */
+    align-items: center;
+}
+
+.user-actions button {
+    margin-right: 10px; 
+    margin-left: 1000px;
+}

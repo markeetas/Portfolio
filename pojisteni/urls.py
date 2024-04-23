@@ -10,5 +10,8 @@ urlpatterns = [
     path("events_index/", views.EventsIndex.as_view(), name="events_index"),
     path('', views.HomeView.as_view(), name='home'),
     path("", url_handlers.index_handler),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('register/', views.register_view, name='register'),
 ]
 

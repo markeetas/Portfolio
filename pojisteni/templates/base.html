@@ -23,9 +23,22 @@
                     <div class="nav_item"><a href="{% url 'insured_index' %}">Pojištěnci</a></div>
                     <div class="nav_item"><a href="{% url 'insurance_index' %}">Pojištění</a></div> 
                     <div class="nav_item"><a href="{% url 'events_index' %}">Události</a></div>
-                    <div class="nav_item"><a href="{% url 'about' %}">O aplikaci</a></div> 
-                {% comment %} <div class="user-actions"> {% endcomment %}
-                    <!-- Vložte kód pro přihlášení a registraci -->
+                    <div class="nav_item" style="margin-bottom: 20px;"><a href="{% url 'about' %}">O aplikaci</a></div> 
+                    <div class="user-actions">
+                        {% if user.is_authenticated %}
+                            <p>Přihlášený uživatel: {{ user.username }}</p>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Odhlásit se</button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit">Přihlásit se</button>
+                            </form>
+                            <a href="{% url 'register' %}">Registrace</a>
+                        {% endif %}
                 </div>
             </div>
         </nav>
