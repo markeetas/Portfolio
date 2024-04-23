@@ -1,7 +1,55 @@
 {% extends "base.html" %}
+
 {% block content %}
+    <table class="insurance-table">
+        <thead>
+            <tr>
+                <th>Jméno</th>
+                <th>Bydliště</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for insured in insureds %}
+                <tr>
+                    <td>{{ insured.name }}</td>
+                    <td>{{ insured.address }}</td>
+                    <td>{{ insured.email }}</td>
+                    <td>{{ insured.phone }}</td>
+                    <td>
+                        <a href="{% url 'edit_insured' insured.pk %}">Editovat</a> | 
+                        <a href="{% url 'delete_insured' insured.pk %}">Odstranit</a> |
+                        <a href="#" data-toggle="modal" data-target="#insuredModal{{ insured.pk }}">Zobrazit detail</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     {% for insured in insureds %}
-        <a href="{% url 'insured_detail' insured.pk %}">{{ insured.name }}</a>, Adresa: {{ insured.address }}, Email: {{ insured.email }}, Telefon: {{ insured.phone }}
-        <br>
+        <!-- Modální okno pro zobrazení detailů pojištěnce -->
+        <div class="modal fade" id="insuredModal{{ insured.pk }}" tabindex="-1" role="dialog" aria-labelledby="insuredModalLabel{{ insured.pk }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="insuredModalLabel{{ insured.pk }}">{{ insured.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Jméno:</strong> {{ insured.name }}</p>
+                        <p><strong>Bydliště:</strong> {{ insured.address }}</p>
+                        <p><strong>Email:</strong> {{ insured.email }}</p>
+                        <p><strong>Telefon:</strong> {{ insured.phone }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock content %}

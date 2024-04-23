@@ -89,3 +89,18 @@ footer {
     margin-right: 10px; 
     margin-left: 1000px;
 }
+
+.insurance-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.insurance-table th, .insurance-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.insurance-table th {
+    background-color: #f2f2f2;
+}

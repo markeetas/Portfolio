@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import Insurance, Insured, InsuranceEvent, UserRole, Statistics
 from .forms import InsuredForm
@@ -86,3 +86,30 @@ def register_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})    
+
+def edit_insured(request, pk):
+    # Získání pojištěnce podle jeho primárního klíče (pk)
+    insured = get_object_or_404(Insured, pk=pk)
+
+    if request.method == 'POST':
+        # Pokud je požadavek typu POST, zpracování formuláře
+        form = InsuredForm(request.POST, instance=insured)
+        if form.is_valid():
+            form.save()
+            return redirect('insured_index')  # Přesměrování na seznam pojištěnců po úspěšné editaci
+    else:
+        # Pokud je požadavek typu GET, zobrazíme formulář s aktuálními údaji pojištěnce
+        form = InsuredForm(instance=insured)
+
+    return render(request, 'edit_insured.html', {'form': form})
+
+def delete_insured(request, pk):
+    # Získání pojištěnce podle jeho primárního klíče (pk)
+    insured = get_object_or_404(Insured, pk=pk)
+
+    if request.method == 'POST':
+        # Pokud je požadavek typu POST, provede se smazání pojištěnce
+        insured.delete()
+        return redirect('insured_index')  # Přesměrování na seznam pojištěnců po úspěšném smazání
+
+    return render(request, 'delete_insured.html', {'insured': insured})
