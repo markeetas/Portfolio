@@ -70,7 +70,7 @@ def login_view(request):
                 return redirect('home')  # Přesměrování na domovskou stránku po přihlášení
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'pojisteni/login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
@@ -85,7 +85,7 @@ def register_view(request):
             return redirect('home')  # Přesměrování na domovskou stránku po registraci
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})    
+    return render(request, 'pojisteni/register.html', {'form': form})    
 
 def edit_insured(request, pk):
     # Získání pojištěnce podle jeho primárního klíče (pk)
